@@ -42,8 +42,8 @@ namespace MinesweeperCore
         public delegate void ImgEventHandler(object sender, ImgEventArgs iea);
 
         private bool _clicked;
-        private int _itemHeight;
-        private int _itemWeight;
+        private double _itemHeight;
+        private double _itemWeight;
         private bool _leftDown;
         private bool _otherDown;
         private bool _out;
@@ -55,7 +55,7 @@ namespace MinesweeperCore
 
         private readonly int _rows;
 
-        public ImgMouseEventHandler(int columns, int rows, int w, int h)
+        public ImgMouseEventHandler(int columns, int rows, double w, double  h)
         {
             ResetAttribute();
             _columns = columns;
@@ -77,7 +77,7 @@ namespace MinesweeperCore
             _out = false;
         }
 
-        public void InitSizeItem(int w, int h)
+        public void InitSizeItem(double w, double h)
         {
             _itemWeight = w;
             _itemHeight = h;
@@ -214,8 +214,8 @@ namespace MinesweeperCore
                 if (_leftDown && _rightDown || _otherDown) ActiveEvent(sender, EventList.BothOut);
                 if (_leftDown && !_otherDown && !_clicked) ActiveEvent(sender, EventList.LeftOut);
 
-                int x = (int) Math.Floor((double) me.X / _itemWeight);
-                int y = (int) Math.Floor((double) me.Y / _itemHeight);
+                int x = (int) Math.Floor( me.X / _itemWeight);
+                int y = (int) Math.Floor( me.Y / _itemHeight);
                 if (x >= 0 && x < _columns && y >= 0 && y < _rows && (x != _mx || y != _my))
                 {
                     _out = false;

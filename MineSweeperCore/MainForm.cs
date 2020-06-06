@@ -67,7 +67,7 @@ namespace MinesweeperCore
 			_enableTime = false;
 			int itemHeight = 32;
 			int itemWidth = 32;
-			_ime = new ImgMouseEventHandler(_appSettings.LatestColumns, _appSettings.LatestRows, itemWidth, itemHeight);
+			_ime = new ImgMouseEventHandler(_appSettings.LatestColumns, _appSettings.LatestRows, itemWidth + .6, itemHeight + .6);
 			_ime.Event += ime_IEvent;
 			_mb = new MathBase(_appSettings.LatestColumns, _appSettings.LatestRows, _appSettings.LatestMines)
 			{
