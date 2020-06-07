@@ -195,6 +195,7 @@ namespace MinesweeperCore
 			timer.Enabled = false;
 			_mb.RestartAttributeGame();
 			_mf.ResetBeginImage(Resources.nolabeled);
+			tilesPictureBox.Image = _mf.Img;
 			remainMine.Image = DrawNumber(_appSettings.LatestMines);
 			clock.Image = DrawNumber(0);
 			_time = 0;
