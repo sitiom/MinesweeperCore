@@ -211,7 +211,7 @@ namespace MinesweeperCore
 			_appSettings.LatestRows = 9;
 			_appSettings.LatestMines = 10;
 			beginnerMenu.Checked = true;
-			Restart();
+			Application.Restart();
 		}
 
 		private void intermediateMenu_Click(object sender, EventArgs e)
@@ -221,7 +221,7 @@ namespace MinesweeperCore
 			_appSettings.LatestRows = 16;
 			_appSettings.LatestMines = 40;
 			intermediateMenu.Checked = true;
-			Restart();
+			Application.Restart();
 		}
 
 		private void expertMenu_Click(object sender, EventArgs e)
@@ -231,7 +231,7 @@ namespace MinesweeperCore
 			_appSettings.LatestRows = 16;
 			_appSettings.LatestMines = 99;
 			expertMenu.Checked = true;
-			Restart();
+			Application.Restart();
 		}
 
 		private void customMenu_Click(object sender, EventArgs e)
@@ -244,7 +244,7 @@ namespace MinesweeperCore
 				_appSettings.LatestColumns = customForm.Columns;
 				_appSettings.LatestRows = customForm.Rows;
 				_appSettings.LatestMines = customForm.TotalMines;
-				Restart();
+				Application.Restart();
 			}
 		}
 		#endregion
@@ -439,40 +439,6 @@ namespace MinesweeperCore
 				}
 			}
 			UseBestTime();
-		}
-		//<summary>
-		//See https://github.com/dotnet/winforms/issues/2769
-		//</summary>
-		private void Restart()
-		{
-			string[] arguments = Environment.GetCommandLineArgs();
-			Debug.Assert(arguments != null && arguments.Length > 0);
-			StringBuilder sb = new StringBuilder((arguments.Length - 1) * 16);
-			for (int argumentIndex = 1; argumentIndex < arguments.Length - 1; argumentIndex++)
-			{
-				sb.Append('"');
-				sb.Append(arguments[argumentIndex]);
-				sb.Append("\" ");
-			}
-
-			if (arguments.Length > 1)
-			{
-				sb.Append('"');
-				sb.Append(arguments[^1]);
-				sb.Append('"');
-			}
-
-			ProcessStartInfo currentStartInfo = new ProcessStartInfo
-			{
-				FileName = Path.ChangeExtension(Application.ExecutablePath, "exe")
-			};
-			if (sb.Length > 0)
-			{
-				currentStartInfo.Arguments = sb.ToString();
-			}
-
-			Application.Exit();
-			Process.Start(currentStartInfo);
 		}
 	}
 }

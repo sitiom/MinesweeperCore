@@ -4,4 +4,4 @@ A minesweeper clone built in C#
 
 ## Prerequisites
 
-- .NET Core `3.1`
+- .NET `5`
